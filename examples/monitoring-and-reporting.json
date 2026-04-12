@@ -1,0 +1,54 @@
+{
+  "commands": [
+    {
+      "id": 1,
+      "enabled": false,
+      "description": "Git Status Report",
+      "prompt": "Show me a summary of the git repository status: current branch, recent commits (last 5), any uncommitted changes, and branches that are ahead/behind remote. Format it as a clean report.",
+      "intervalMinutes": 30,
+      "settings": {
+        "autoUpdateBestPractices": false,
+        "autoCreateBestPractices": false
+      }
+    },
+    {
+      "id": 2,
+      "enabled": true,
+      "description": "Test Runner",
+      "prompt": "Run the project's test suite (detect from package.json — jest, vitest, mocha, etc.). Show me: total tests, passed, failed, and skipped. If any tests failed, show the failure details. Keep the output concise.",
+      "intervalMinutes": 15,
+      "settings": {
+        "autoUpdateBestPractices": true,
+        "autoCreateBestPractices": true
+      },
+      "onComplete": {
+        "commandId": 4,
+        "extraPrompt": "Include the test results in the report.",
+        "conditional": false
+      }
+    },
+    {
+      "id": 3,
+      "enabled": false,
+      "description": "Build Health",
+      "prompt": "Run the project's build command (detect from package.json — 'npm run build', 'tsc', etc.). Report whether the build succeeded or failed. If it failed, show the errors and suggest fixes.",
+      "intervalMinutes": 30,
+      "settings": {
+        "autoUpdateBestPractices": true,
+        "autoCreateBestPractices": true
+      }
+    },
+    {
+      "id": 4,
+      "enabled": false,
+      "description": "Generate Report",
+      "prompt": "Based on any data passed to you, compile a brief project health report. Include sections for: Test Results, Build Status, and any Issues Found. Format it as markdown. Keep it concise and actionable.",
+      "intervalMinutes": 60,
+      "settings": {
+        "autoUpdateBestPractices": true,
+        "autoCreateBestPractices": true
+      },
+      "includeBestPracticesFrom": [2, 3]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "commands": [
+    {
+      "id": 1,
+      "enabled": true,
+      "description": "Morning Standup",
+      "prompt": "Generate a standup update based on recent git activity. Run 'git log --oneline --since=yesterday' and 'git diff --stat' to see what was done. Format it as:\n\n**Yesterday:**\n- (list of completed work based on commits)\n\n**Today:**\n- (suggest next steps based on open branches and uncommitted work)\n\n**Blockers:**\n- (note any merge conflicts or failing builds)\n\nKeep it concise and professional.",
+      "intervalMinutes": 480,
+      "settings": {
+        "autoUpdateBestPractices": true,
+        "autoCreateBestPractices": true
+      },
+      "onComplete": {
+        "commandId": 2,
+        "extraPrompt": "Post the standup summary above to the team.",
+        "conditional": false
+      }
+    },
+    {
+      "id": 2,
+      "enabled": false,
+      "description": "Send Team Update",
+      "prompt": "Take the standup summary provided and format it as a friendly team message. Add a greeting and any relevant context. If there are blockers, highlight them. Keep the tone professional but approachable.",
+      "intervalMinutes": 480,
+      "settings": {
+        "autoUpdateBestPractices": true,
+        "autoCreateBestPractices": true
+      },
+      "includeBestPracticesFrom": [1]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "commands": [
+    {
+      "id": 1,
+      "enabled": true,
+      "description": "Lint & Fix",
+      "prompt": "Run the linter on this project (detect the linter from package.json — eslint, biome, etc.). Fix any auto-fixable issues. Show me a summary of what was fixed and what still needs manual attention.",
+      "intervalMinutes": 30,
+      "settings": {
+        "autoUpdateBestPractices": true,
+        "autoCreateBestPractices": true
+      }
+    },
+    {
+      "id": 2,
+      "enabled": false,
+      "description": "Check TODOs",
+      "prompt": "Search the codebase for TODO, FIXME, HACK, and XXX comments. Create a summary grouped by file. For each item, show the file path, line number, and the comment text. If you find more than 20, show the top 20 most important ones.",
+      "intervalMinutes": 60,
+      "settings": {
+        "autoUpdateBestPractices": true,
+        "autoCreateBestPractices": true
+      }
+    },
+    {
+      "id": 3,
+      "enabled": false,
+      "description": "Dependency Check",
+      "prompt": "Check for outdated npm dependencies using 'npm outdated'. Summarize which packages have updates available, distinguish between patch/minor/major updates, and flag any that might have breaking changes.",
+      "intervalMinutes": 120,
+      "settings": {
+        "autoUpdateBestPractices": true,
+        "autoCreateBestPractices": true
+      }
+    },
+    {
+      "id": 4,
+      "enabled": false,
+      "description": "Security Audit",
+      "prompt": "Run 'npm audit' on this project. Summarize any vulnerabilities found by severity (critical, high, medium, low). For critical and high severity issues, suggest fixes. If there are no vulnerabilities, just confirm the project is clean.",
+      "intervalMinutes": 120,
+      "settings": {
+        "autoUpdateBestPractices": true,
+        "autoCreateBestPractices": true
+      },
+      "onComplete": {
+        "commandId": 3,
+        "extraPrompt": "Focus especially on packages that have known security vulnerabilities.",
+        "conditional": true,
+        "chainCondition": "there are security vulnerabilities that need fixing"
+      }
+    }
+  ]
+}

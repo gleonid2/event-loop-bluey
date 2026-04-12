@@ -1,0 +1,317 @@
+{
+  "name": "event-loop-bluey",
+  "displayName": "Event Loop Bluey 🐕",
+  "description": "Automated command scheduler — your loyal Bluey fetches and runs Copilot prompts on a loop",
+  "version": "0.0.1",
+  "publisher": "bluey-extension",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "eventLoopBluey.showCommandDetail",
+        "title": "Show Command Detail",
+        "icon": "$(open-preview)"
+      },
+      {
+        "command": "eventLoopBluey.clearHistory",
+        "title": "Clear History",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "eventLoopBluey.startScheduler",
+        "title": "Event Loop Bluey: Start Scheduler 🐕",
+        "icon": "$(play)"
+      },
+      {
+        "command": "eventLoopBluey.startScheduledOnly",
+        "title": "Event Loop Bluey: Start Scheduled (Daily/Weekly) 🐕",
+        "icon": "$(watch)"
+      },
+      {
+        "command": "eventLoopBluey.stopScheduler",
+        "title": "Event Loop Bluey: Stop Scheduler",
+        "icon": "$(debug-stop)"
+      },
+      {
+        "command": "eventLoopBluey.stopScheduledOnly",
+        "title": "Event Loop Bluey: Stop Scheduled (Daily/Weekly)",
+        "icon": "$(stop-circle)"
+      },
+      {
+        "command": "eventLoopBluey.runAll",
+        "title": "Event Loop Bluey: Run All Commands Now",
+        "icon": "$(run-all)"
+      },
+      {
+        "command": "eventLoopBluey.runCommand",
+        "title": "Run Command",
+        "icon": "$(play)"
+      },
+      {
+        "command": "eventLoopBluey.runScheduledCommand",
+        "title": "Run Scheduled Command",
+        "icon": "$(watch)"
+      },
+      {
+        "command": "eventLoopBluey.addCommand",
+        "title": "Event Loop Bluey: Add Command",
+        "icon": "$(add)"
+      },
+      {
+        "command": "eventLoopBluey.editCommand",
+        "title": "Edit Command",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "eventLoopBluey.deleteCommand",
+        "title": "Delete Command",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "eventLoopBluey.toggleCommand",
+        "title": "Toggle Enable/Disable",
+        "icon": "$(check)"
+      },
+      {
+        "command": "eventLoopBluey.openCommandsFile",
+        "title": "Event Loop Bluey: Open Commands File",
+        "icon": "$(json)"
+      },
+      {
+        "command": "eventLoopBluey.refreshCommands",
+        "title": "Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "eventLoopBluey.showRunLog",
+        "title": "Show Run Log",
+        "icon": "$(output)"
+      },
+      {
+        "command": "eventLoopBluey.openSettings",
+        "title": "Event Loop Bluey: Post-Run Settings",
+        "icon": "$(gear)"
+      },
+      {
+        "command": "eventLoopBluey.exportCommands",
+        "title": "Event Loop Bluey: Export Commands",
+        "icon": "$(cloud-upload)"
+      },
+      {
+        "command": "eventLoopBluey.importCommands",
+        "title": "Event Loop Bluey: Import Commands",
+        "icon": "$(cloud-download)"
+      },
+      {
+        "command": "eventLoopBluey.addCategory",
+        "title": "Event Loop Bluey: Add Category",
+        "icon": "$(new-folder)"
+      },
+      {
+        "command": "eventLoopBluey.renameCategory",
+        "title": "Rename Category"
+      },
+      {
+        "command": "eventLoopBluey.deleteCategory",
+        "title": "Delete Category"
+      },
+      {
+        "command": "eventLoopBluey.moveCategoryUp",
+        "title": "Move Up",
+        "icon": "$(arrow-up)"
+      },
+      {
+        "command": "eventLoopBluey.moveCategoryDown",
+        "title": "Move Down",
+        "icon": "$(arrow-down)"
+      },
+      {
+        "command": "eventLoopBluey.setCommandCategory",
+        "title": "Move to Category..."
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "event-loop-bluey",
+          "title": "Event Loop Bluey 🐕",
+          "icon": "resources/bluey-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "event-loop-bluey": [
+        {
+          "id": "eventLoopBluey.commands",
+          "name": "Commands"
+        },
+        {
+          "id": "eventLoopBluey.runHistory",
+          "name": "Run History"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "eventLoopBluey.addCommand",
+          "when": "view == eventLoopBluey.commands",
+          "group": "navigation@1"
+        },
+        {
+          "command": "eventLoopBluey.addCategory",
+          "when": "view == eventLoopBluey.commands",
+          "group": "navigation@2"
+        },
+        {
+          "command": "eventLoopBluey.refreshCommands",
+          "when": "view == eventLoopBluey.commands",
+          "group": "navigation@3"
+        },
+        {
+          "command": "eventLoopBluey.openSettings",
+          "when": "view == eventLoopBluey.commands",
+          "group": "navigation@4"
+        },
+        {
+          "command": "eventLoopBluey.exportCommands",
+          "when": "view == eventLoopBluey.commands",
+          "group": "2_importexport@1"
+        },
+        {
+          "command": "eventLoopBluey.importCommands",
+          "when": "view == eventLoopBluey.commands",
+          "group": "2_importexport@2"
+        },
+        {
+          "command": "eventLoopBluey.startScheduler",
+          "when": "view == eventLoopBluey.commands && !eventLoopBluey.schedulerRunning",
+          "group": "navigation@5"
+        },
+        {
+          "command": "eventLoopBluey.startScheduledOnly",
+          "when": "view == eventLoopBluey.commands && !eventLoopBluey.scheduledRunning",
+          "group": "navigation@6"
+        },
+        {
+          "command": "eventLoopBluey.stopScheduledOnly",
+          "when": "view == eventLoopBluey.commands && eventLoopBluey.scheduledRunning",
+          "group": "navigation@6"
+        },
+        {
+          "command": "eventLoopBluey.stopScheduler",
+          "when": "view == eventLoopBluey.commands && eventLoopBluey.schedulerRunning",
+          "group": "navigation@5"
+        },
+        {
+          "command": "eventLoopBluey.clearHistory",
+          "when": "view == eventLoopBluey.runHistory",
+          "group": "navigation@1"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "eventLoopBluey.runCommand",
+          "when": "view == eventLoopBluey.commands && viewItem == command-interval",
+          "group": "inline@1"
+        },
+        {
+          "command": "eventLoopBluey.runScheduledCommand",
+          "when": "view == eventLoopBluey.commands && viewItem == command-scheduled",
+          "group": "inline@1"
+        },
+        {
+          "command": "eventLoopBluey.toggleCommand",
+          "when": "view == eventLoopBluey.commands && viewItem =~ /command-.*/",
+          "group": "inline@2"
+        },
+        {
+          "command": "eventLoopBluey.editCommand",
+          "when": "view == eventLoopBluey.commands && viewItem =~ /command-.*/",
+          "group": "context@1"
+        },
+        {
+          "command": "eventLoopBluey.deleteCommand",
+          "when": "view == eventLoopBluey.commands && viewItem =~ /command-.*/",
+          "group": "context@2"
+        },
+        {
+          "command": "eventLoopBluey.setCommandCategory",
+          "when": "view == eventLoopBluey.commands && viewItem =~ /command-.*/",
+          "group": "context@3"
+        },
+        {
+          "command": "eventLoopBluey.renameCategory",
+          "when": "view == eventLoopBluey.commands && viewItem == category",
+          "group": "context@1"
+        },
+        {
+          "command": "eventLoopBluey.deleteCategory",
+          "when": "view == eventLoopBluey.commands && viewItem == category",
+          "group": "context@2"
+        },
+        {
+          "command": "eventLoopBluey.moveCategoryUp",
+          "when": "view == eventLoopBluey.commands && viewItem == category",
+          "group": "inline@1"
+        },
+        {
+          "command": "eventLoopBluey.moveCategoryDown",
+          "when": "view == eventLoopBluey.commands && viewItem == category",
+          "group": "inline@2"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Event Loop Bluey",
+      "properties": {
+        "eventLoopBluey.commandsFilePath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to the commands.json file. If empty, looks for commands.json in the workspace root."
+        },
+        "eventLoopBluey.intervalMinutes": {
+          "type": "number",
+          "default": 10,
+          "minimum": 1,
+          "description": "Interval in minutes between scheduled runs."
+        },
+        "eventLoopBluey.waitBetweenCommandsSeconds": {
+          "type": "number",
+          "default": 120,
+          "minimum": 0,
+          "description": "Seconds to wait between running consecutive commands."
+        },
+        "eventLoopBluey.terminalTimeoutMinutes": {
+          "type": "number",
+          "default": 10,
+          "minimum": 1,
+          "description": "Maximum minutes a terminal command can run before being killed."
+        },
+        "eventLoopBluey.copilotCliCommand": {
+          "type": "string",
+          "default": "copilot --allow-all",
+          "description": "The CLI command used to run prompts (e.g. 'copilot --allow-all', 'cc', 'agency copilot --allow-all')."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.0"
+  }
+}

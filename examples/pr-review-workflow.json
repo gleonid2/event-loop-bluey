@@ -1,0 +1,35 @@
+{
+  "commands": [
+    {
+      "id": 1,
+      "enabled": true,
+      "description": "Check for New PRs",
+      "prompt": "Check the git repository for any open pull requests that need review. You can use 'gh pr list' or check the remote repository. List any PRs that are open and haven't been reviewed yet. For each PR, include the PR number, title, author, and link.",
+      "intervalMinutes": 15,
+      "settings": {
+        "autoUpdateBestPractices": true,
+        "autoCreateBestPractices": true
+      },
+      "onComplete": {
+        "commandId": 2,
+        "extraPrompt": "Review the pull request(s) listed above.",
+        "conditional": true,
+        "chainCondition": "there are new pull requests that need review"
+      }
+    },
+    {
+      "id": 2,
+      "enabled": false,
+      "description": "Review PR",
+      "prompt": "Review the pull request provided. Check which files have been changed, read through the code changes, and look for: bugs, security issues, performance problems, code style issues, and missing tests. If you find issues, leave constructive comments. Be specific about what's wrong and suggest fixes.",
+      "intervalMinutes": 60,
+      "settings": {
+        "autoUpdateBestPractices": true,
+        "autoCreateBestPractices": true
+      },
+      "includeBestPracticesFrom": [1]
+    }
+  ],
+  "postRunTemplate": "After completing the task, update the best practices file at {{bestPracticesPath}} with any patterns you noticed. Keep advice generic since each PR is different.",
+  "postRunCreateTemplate": "After completing the task, create a best practices file at {{bestPracticesPath}} documenting your review approach and what to watch out for."
+}

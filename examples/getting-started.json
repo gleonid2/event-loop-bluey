@@ -1,0 +1,37 @@
+{
+  "commands": [
+    {
+      "id": 1,
+      "enabled": true,
+      "description": "Hello World",
+      "prompt": "Say hello and tell me an interesting fact about today's date. Keep it short — 2-3 sentences.",
+      "intervalMinutes": 5,
+      "settings": {
+        "autoUpdateBestPractices": false,
+        "autoCreateBestPractices": false
+      }
+    },
+    {
+      "id": 2,
+      "enabled": false,
+      "description": "Weather Check",
+      "prompt": "Search the web for today's weather forecast in my area. Give me a brief summary: temperature, conditions, and whether I need an umbrella.",
+      "intervalMinutes": 60,
+      "settings": {
+        "autoUpdateBestPractices": true,
+        "autoCreateBestPractices": true
+      }
+    },
+    {
+      "id": 3,
+      "enabled": false,
+      "description": "Daily Motivation",
+      "prompt": "Generate an inspiring motivational quote. Make it unique — don't repeat common ones. Format it nicely with the author name.",
+      "intervalMinutes": 120,
+      "settings": {
+        "autoUpdateBestPractices": true,
+        "autoCreateBestPractices": true
+      }
+    }
+  ]
+}
