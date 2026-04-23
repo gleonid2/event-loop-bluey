@@ -29,10 +29,3 @@ jobs:
 
       - name: Package VSIX
         run: npx --yes @vscode/vsce package --no-dependencies --out event-loop-bluey.vsix
-
-      - name: Upload VSIX artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: event-loop-bluey-vsix
-          path: event-loop-bluey.vsix
-          if-no-files-found: error
